@@ -89,14 +89,11 @@ SELECT * FROM species;
 SELECT 
     sighting_id,
     CASE 
-        WHEN extract(HOUR FROM sighting_time) < 12 THEN 'Morning'
-        WHEN extract(HOUR FROM sighting_time) >= 12 AND extract(HOUR FROM sighting_time) < 17 THEN 'Afternoon'
+        WHEN extract(hour FROM sighting_time) < 12 THEN 'Morning'
+        WHEN extract(hour FROM sighting_time) >= 12 AND extract(hour FROM sighting_time) < 17 THEN 'Afternoon'
         ELSE 'Evening'
-    END AS time_of_day
-FROM 
-    sightings
-ORDER BY 
-    sighting_id;
+    END as time_of_day FROM sightings
+        ORDER BY sighting_id asc;
 
 -- Problem 9
 DELETE FROM rangers
