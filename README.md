@@ -1,15 +1,19 @@
 ## **1. What is PostgreSQL?**
 
-To me it is a widely used open source RDBMS. I guess it has some history of the naming, and some other database management system before postgres like COBOL, but thats not the point of why it is widely used, I find the points below to be a valid reasons behind postgres is still a widely goto RDBMS for any software engineer;
+আমার কাছে এটি একটি বহুল ব্যবহৃত ওপেন সোর্স রিলেশনাল ডেটাবেইস ম্যানেজমেন্ট সিস্টেম (RDBMS)। আমি মনে করি এর নামকরণের পেছনে কিছু ইতিহাস আছে, এবং পোস্টগ্রেসের আগেও যেমন COBOL-এর মতো কিছু ডেটাবেইস ম্যানেজমেন্ট সিস্টেম ছিল, কিন্তু ব্যাপকভাবে ব্যবহৃত হওয়ার মূল কারণ সেটা নয়। আমি নিচের পয়েন্টগুলোকে পোস্টগ্রেস এখনও যেকোনো সফটওয়্যার ইঞ্জিনিয়ারের জন্য একটি জনপ্রিয় RDBMS হিসেবে ব্যবহৃত হওয়ার যৌক্তিক কারণ বলে মনে করি।
 
-- Open Source and it is free to use.
-- Cross platform compatibility
-- support SQL and procedural languages like PL/pgSQL.
-- supports triggers, subquries, function procedures, views.
-- Suports more advanced features
+- ওপেন সোর্স এবং এটি ব্যবহারের জন্য একদম ফ্রি।
+
+- বিভিন্ন প্ল্যাটফর্মে ব্যবহারযোগ্য (ক্রস-প্ল্যাটফর্ম কম্প্যাটিবিলিটি)।
+
+- SQL এবং PL/pgSQL-এর মতো প্রোসিজুরাল ভাষা সমর্থন করে।
+
+- ট্রিগার, সাবকুয়েরি, ফাংশনাল প্রোসিজার এবং ভিউ সমর্থন করে।
+
+- আরও উন্নত বৈশিষ্ট্যসমূহ সমর্থন করে।
 
 
-Code example
+কোড উদাহরণ:
 ```
 CREATE TABLE employees (
   id SERIAL PRIMARY KEY,
@@ -19,21 +23,27 @@ CREATE TABLE employees (
 );
 ```
 
-Postgres is the ideal RDBMS choice for having many feature, stable and ideal for both small and large scale systems.
+Postgres অনেক ফিচার সমৃদ্ধ, স্থিতিশীল এবং ছোট ও বড় উভয় ধরনের সিস্টেমের জন্য আদর্শ RDBMS পছন্দ।
 
 
 ---
 
 ## **2. What is the purpose of a database schema in PostgreSQL?**
 
-A database schema is used to resolve possible conflicts, organize data, security and much more. For example, connection between two tables whose relationship can be complex, ie many to many, one to many, or many to one - can be resolved using a intermediatay table - such problems can be seen and easily resolved by schemas in postgres. Moreover, schemas can provide a clear picture of access control, i.e I can assign perssion to users based on schema level, kind of like compartmentalization in security agencies. Another purpose of schema could be to manage nameing conflicts.
+একটি ডেটাবেইস স্কিমা ব্যবহার করা হয় সম্ভাব্য দ্বন্দ্ব সমাধান, ডেটা সংগঠিতকরণ, সিকিউরিটি এবং আরও অনেক কিছুর জন্য।
+
+উদাহরণস্বরূপ, দুটি টেবিলের মধ্যে সংযোগ তৈরি করা — যাদের সম্পর্ক জটিল হতে পারে যেমন many-to-many, one-to-many অথবা many-to-one — এসব ক্ষেত্রে একটি মধ্যবর্তী (intermediary) টেবিল ব্যবহার করে সেই সম্পর্ক সহজে নির্ধারণ করা যায়। পোস্টগ্রেসে স্কিমার মাধ্যমে এধরনের সমস্যা সহজেই দেখা এবং সমাধান করা যায়।
+
+তাছাড়া, স্কিমা অ্যাক্সেস কন্ট্রোলের স্পষ্ট চিত্র প্রদান করে। যেমন, আমি স্কিমা লেভেলে ইউজারদের নির্দিষ্ট অনুমতি (permission) দিতে পারি — যা নিরাপত্তা সংস্থাগুলোর compartmentalization-এর মতোই কাজ করে।
+
+আরও একটি উদ্দেশ্য হতে পারে নামকরণের দ্বন্দ্ব (naming conflicts) পরিচালনা করা — স্কিমা ব্যবহারে একই নামের অবজেক্ট বিভিন্ন স্কিমাতে আলাদাভাবে রাখা সম্ভব।
 
 
 ---
 
 ## **3. Explain the Primary Key and Foreign Key concepts in PostgreSQL.**
 
-Primary Key, is unique, increments by 1, not null, for each row of data in a table.
+Primary Key একটি টেবিলের প্রতিটি রো-এর জন্য ইউনিক (অদ্বিতীয়), এক করে বৃদ্ধি পায় (auto-increment), এবং কখনোই null হতে পারে না।
 
 ```
 CREATE TABLE users (
@@ -43,10 +53,10 @@ CREATE TABLE users (
 );
 ```
 
-Here, user_id is the primary keym it uniquely identifies each user.
+এখানে user_id হচ্ছে প্রাইমারি কী, যা প্রতিটি ইউজারকে ইউনিকভাবে শনাক্ত করে।
 
 
-Foreign Key is the primary key of another table, that is being included in a table for relationships between tables, a reference, it can options to cascade updates and deletions.
+Foreign Key হল অন্য একটি টেবিলের প্রাইমারি কী, যেটিকে একটি টেবিলে সম্পর্ক তৈরির জন্য রেফারেন্স হিসেবে যুক্ত করা হয়। এটি টেবিলগুলোর মধ্যে সংযোগ স্থাপন করে এবং এতে update ও delete এর ক্ষেত্রে CASCADE অপশন দেওয়া যায়, যাতে সংশ্লিষ্ট ডেটাগুলো একসাথে আপডেট বা মুছে ফেলা যায়।
 
 ```
 CREATE TABLE orders (
@@ -56,7 +66,7 @@ CREATE TABLE orders (
 );
 ```
 
-Here, user_id is a foreign key referencing the users table.
+এখানে user_id একটি Foreign Key, যা users টেবিলকে রেফারেন্স করে।
 
 
 ---
@@ -65,12 +75,15 @@ Here, user_id is a foreign key referencing the users table.
 ## **4. What is the difference between the VARCHAR and CHAR data types?**
 
 
-I use VARCHAR when the length of the value vaires within a certain given limit, and CHAR is used when the length of the value is fixed, however, I have listed some differences below;
+আমি VARCHAR ব্যবহার করি যখন ডেটার দৈর্ঘ্য একটি নির্দিষ্ট সীমার মধ্যে পরিবর্তিত হতে পারে, এবং CHAR ব্যবহার করি যখন ডেটার দৈর্ঘ্য নির্দিষ্ট বা নির্দিষ্ট সংখ্যক অক্ষরে সীমাবদ্ধ থাকে। তবে নিচে আমি কিছু পার্থক্য তালিকাভুক্ত করেছি:
 
-- VARCHAR uses as much space as needed, CHAR uses n characters padded with spaces if needed
-- VARCHAR uses no padding, CHAR pads with spaces to match the defined length
-- VARCHAR is slightly more efficient for variable length text, CHAR is slightly faster for fixed  length text
-- VARCHAR is best for data with varying length, CHAR is suitable when all entires are of fixed length
+VARCHAR প্রয়োজনে যতটুকু জায়গা দরকার ততটুকুই ব্যবহার করে, আর CHAR নির্দিষ্ট সংখ্যক অক্ষর (n) ব্যবহার করে, প্রয়োজনে অতিরিক্ত অংশ স্পেস দিয়ে পূরণ (padding) করে।
+
+VARCHAR কোনো padding ব্যবহার করে না, আর CHAR নির্ধারিত দৈর্ঘ্য পূরণে স্পেস দিয়ে padding করে।
+
+VARCHAR ভ্যারিয়েবল দৈর্ঘ্যের টেক্সটের জন্য সামান্য বেশি কার্যকর, আর CHAR নির্দিষ্ট দৈর্ঘ্যের ডেটার জন্য কিছুটা দ্রুত কাজ করে।
+
+VARCHAR ভিন্ন দৈর্ঘ্যের ডেটার জন্য ভালো, আর CHAR উপযুক্ত যখন সব এন্ট্রির দৈর্ঘ্য নির্দিষ্ট ও একই হয়।
 
 VARCHAR
 
@@ -94,8 +107,9 @@ CREATE TABLE codes (
 
 ## **5. Explain the purpose of the WHERE clause in a SELECT statement.**
 
+WHERE ক্লজ মূলত একটি কন্ডিশনাল স্টেটমেন্ট, যা SELECT কুয়েরিতে ব্যবহার করা হয়। এটি কোনো নির্দিষ্ট শর্তের উপর ভিত্তি করে টেবিল থেকে রো ফিল্টার করে, যার মাধ্যমে কুয়েরির ফলাফল আরও নির্দিষ্টভাবে সীমাবদ্ধ করা যায়।
 
-WHERE clause is basically a condition statement for the SELECT query, it filter rows from a table based on that condition. It helps narrow down query results. It can be combined with logical operators like, `AND`, `OR`, `NOT` and also comparison operators like `=`, `>`, `<`, `LIKE`, `ILIKE`, `BETWEEN`, `IN`, `IS NULL` and even subqueries.
+এটি যুক্তিসংক্রান্ত অপারেটর যেমন `AND`, `OR`, `NOT` এবং তুলনামূলক অপারেটর যেমন `=`, `>`, `<`, `LIKE`, `ILIKE`, `BETWEEN`, `IN`, `IS NULL` এমনকি সাবকুয়েরির সাথেও ব্যবহার করা যায়।
 
 ```
 CREATE TABLE employees (
