@@ -1,4 +1,4 @@
-## **What is PostgreSQL?**
+## **1. What is PostgreSQL?**
 
 To me it is a widely used open source RDBMS. I guess it has some history of the naming, and some other database management system before postgres like COBOL, but thats not the point of why it is widely used, I find the points below to be a valid reasons behind postgres is still a widely goto RDBMS for any software engineer;
 
@@ -24,14 +24,14 @@ Postgres is the ideal RDBMS choice for having many feature, stable and ideal for
 
 ---
 
-## **What is the purpose of a database schema in PostgreSQL?**
+## **2. What is the purpose of a database schema in PostgreSQL?**
 
 A database schema is used to resolve possible conflicts, organize data, security and much more. For example, connection between two tables whose relationship can be complex, ie many to many, one to many, or many to one - can be resolved using a intermediatay table - such problems can be seen and easily resolved by schemas in postgres. Moreover, schemas can provide a clear picture of access control, i.e I can assign perssion to users based on schema level, kind of like compartmentalization in security agencies. Another purpose of schema could be to manage nameing conflicts.
 
 
 ---
 
-## **Explain the Primary Key and Foreign Key concepts in PostgreSQL.**
+## **3. Explain the Primary Key and Foreign Key concepts in PostgreSQL.**
 
 Primary Key, is unique, increments by 1, not null, for each row of data in a table.
 
@@ -62,7 +62,7 @@ Here, user_id is a foreign key referencing the users table.
 ---
 
 
-## **What is the difference between the VARCHAR and CHAR data types?**
+## **4. What is the difference between the VARCHAR and CHAR data types?**
 
 
 I use VARCHAR when the length of the value vaires within a certain given limit, and CHAR is used when the length of the value is fixed, however, I have listed some differences below;
@@ -92,7 +92,7 @@ CREATE TABLE codes (
 
 ---
 
-## **Explain the purpose of the WHERE clause in a SELECT statement.**
+## **5. Explain the purpose of the WHERE clause in a SELECT statement.**
 
 
 WHERE clause is basically a condition statement for the SELECT query, it filter rows from a table based on that condition. It helps narrow down query results. It can be combined with logical operators like, `AND`, `OR`, `NOT` and also comparison operators like `=`, `>`, `<`, `LIKE`, `ILIKE`, `BETWEEN`, `IN`, `IS NULL` and even subqueries.
